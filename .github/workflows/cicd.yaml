@@ -47,24 +47,3 @@ jobs:
           docker push $REGISTRY/$DOCKERHUB_USERNAME/$IMAGE_NAME:${{ github.sha }}
           docker push $REGISTRY/$DOCKERHUB_USERNAME/$IMAGE_NAME:latest
 
-      - name: Set up kubectl
-        uses: azure/setup-kubectl@v4
-        with:
-          version: 'latest'
-
-      - name: Configure kubeconfig
-        run: |
-          mkdir -p $HOME/.kube
-          echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
-
-      - name: Deploy to Kubernetes
-        env:
-          DOCKERHUB_USERNAME: ${{ env.DOCKERHUB_USERNAME }}
-        run: |
-          # Обновляем образ в манифесте приложения и применяем манифесты
-          sed -e "s|YOUR_DOCKERHUB_USERNAME|$DOCKERHUB_USERNAME|g" k8s/app-deployment.yaml | kubectl apply -f -
-          kubectl apply -f k8s/mongo-deployment.yaml
-          kubectl rollout status deployment/todo-app
-          kubectl rollout status deployment/mongo
-
-
