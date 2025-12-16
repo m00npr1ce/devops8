@@ -7,7 +7,6 @@ COPY package.json package-lock.json* ./
 RUN npm install --production
 
 COPY src ./src
-COPY test ./test
 
 ENV PORT=3000
 EXPOSE 3000
