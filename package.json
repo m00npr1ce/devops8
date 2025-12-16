@@ -1,0 +1,33 @@
+{
+  "name": "k8s-todo-app",
+  "version": "1.0.0",
+  "description": "Simple TODO API with MongoDB, Docker, Kubernetes and GitHub Actions CI/CD",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "lint": "echo \"no lint configured\"",
+    "test": "node test/smoke.test.js"
+  },
+  "keywords": [
+    "todo",
+    "kubernetes",
+    "docker",
+    "mongodb",
+    "ci-cd"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "mongoose": "^8.6.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
+
+
